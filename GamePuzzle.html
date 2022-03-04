@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Puzzle</title>
+</head>
+<style>
+    img {
+        width: 300px;
+        height: 300px;
+    }
+</style>
+<body>
+<img id="anh1" src="imgs/anh1.jpg" onclick="chuyenAnh(this.id)" alt="1">
+<img id="anh2" src="imgs/anh2.jpg" onclick="chuyenAnh(this.id)" alt="2">
+<img id="anh3" src="imgs/anh3.jpg" onclick="chuyenAnh('anh3')" alt="3">
+<script>
+    function chuyenAnh(id) {
+        let img = document.getElementById(id);
+        let alt = parseInt(img.alt);
+        /*if(alt < 3){
+            alt++;
+        }else {
+            alt = 1;
+        }*/
+
+        (alt < 3) ? alt++ : alt = 1;
+        img.src = 'imgs/anh'+alt+'.jpg';
+        img.alt = alt;
+        checkWin();
+
+        /*if (img.src.match('anh1.jpg')) {
+            img.src = 'imgs/anh2.jpg';
+            img.alt = '2';
+        } else if (img.src.match('anh2.jpg')) {
+            img.src = 'imgs/anh3.jpg';
+            img.alt = '3';
+        } else {
+            img.src = 'imgs/anh1.jpg';
+            img.alt = '1';
+        }*/
+    }
+
+    /*function chuyenAnh2() {
+        let img = document.getElementById('anh2');
+        if (img.src.match('anh1.jpg')) {
+            img.src = 'imgs/anh2.jpg';
+            img.alt = '2';
+        } else if (img.src.match('anh2.jpg')) {
+            img.src = 'imgs/anh3.jpg';
+            img.alt = '3';
+        } else {
+            img.src = 'imgs/anh1.jpg';
+            img.alt = '1';
+        }
+    }*/
+
+    function checkWin() {
+        let anh1  = document.getElementById('anh1').alt;
+        let anh2  = document.getElementById('anh2').alt;
+        let anh3  = document.getElementById('anh3').alt;
+        if(anh1 === anh2 && anh2 === anh3){
+            setTimeout(function () {
+                alert("Win");
+            },100);
+
+        }
+    }
+</script>
+</body>
+</html>
+<!--
+    B1: Hiển thị ảnh
+    B2: Click chuyển ảnh từ ảnh 1 sang ảnh 2
+
+    let str = 'avbcjkjdsjdksjkdjks';
+    str.match('avb')-> true
+    str.match('ab') -> false
+
+    B3: Tiến hóa code -> Refactor
+    B4: Check Win
+-->
